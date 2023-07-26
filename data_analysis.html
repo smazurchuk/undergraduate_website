@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Non-Linear Analysis</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.dropotron.min.js"></script>
+        <script src="js/skel.min.js"></script>
+        <script src="js/skel-layers.min.js"></script>
+        <script src="js/init.js"></script>
+        <noscript>
+            <link rel="stylesheet" href="css/skel.css" />
+            <link rel="stylesheet" href="css/style.css" />
+            <link rel="stylesheet" href="css/style-wide.css" />
+        </noscript>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+    </head>
+    <body>
+        <!--Main-->
+        <section class="wrapper style1">
+            <div class="container">
+                <div id="content">
+                    <article>
+                        <header>
+                            <h2>A simple case of Dimensionality Reduction</h2>
+                        </header>
+                        <p> A list of 10 points is an example of a two-dimensional dataset. We can plot this data set to look for a trend</p>
+
+
+                            <style type="text/css">
+                                .tg {
+                                    margin-bottom:4px;
+                                    float:left;
+                                    width:30%;
+                                    border-collapse: collapse;
+                                    border-spacing: 0;
+                                    border-color: #ccc;
+                                }
+
+                                    .tg td {
+                                        font-family: Arial, sans-serif;
+                                        font-size: 14px;
+                                        padding: 10px 5px;
+                                        border-style: solid;
+                                        border-width: 1px;
+                                        overflow: hidden;
+                                        word-break: normal;
+                                        border-color: #ccc;
+                                        color: #333;
+                                        background-color: #fff;
+                                    }
+
+                                    .tg th {
+                                        font-family: Arial, sans-serif;
+                                        font-size: 14px;
+                                        font-weight: normal;
+                                        padding: 10px 5px;
+                                        border-style: solid;
+                                        border-width: 1px;
+                                        overflow: hidden;
+                                        word-break: normal;
+                                        border-color: #ccc;
+                                        color: #333;
+                                        background-color: #f0f0f0;
+                                    }
+
+                                    .tg .tg-wm6t {
+                                        font-weight: bold;
+                                        font-size: 16px;
+                                    }
+                            </style>
+                 
+                            <table class="tg">
+                                <tr>
+                                    <th class="tg-wm6t">X - Value</th>
+                                    <th class="tg-wm6t">Y - Value</th>
+                                </tr>
+                                <tr>
+                                    <td class="tg-031e">0.03</td>
+                                    <td class="tg-031e">0.10</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-031e">0.56</td>
+                                    <td class="tg-031e">0.50</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-031e">0.88</td>
+                                    <td class="tg-031e">0.73</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-031e">0.67</td>
+                                    <td class="tg-031e">0.63</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-031e">0.19</td>
+                                    <td class="tg-031e">0.18</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-031e">0.37</td>
+                                    <td class="tg-031e">0.18</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-031e">0.46</td>
+                                    <td class="tg-031e">0.51</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-031e">0.98</td>
+                                    <td class="tg-031e">0.84</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-031e">0.16</td>
+                                    <td class="tg-031e">0.10</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-031e">0.86</td>
+                                    <td class="tg-031e">0.90</td>
+                                </tr>
+                            </table>
+
+                            <img =" src="images/straight_line.jpg" height="500"  />
+
+                            <p><br/><br /><br /><br />
+                                A reduction from two dimensions to 1 can be done by finding a "line of best fit". However, there are two predominant ways
+                                to define this line. One can minimize the residuals (or the vertical distance between a line and the points), or one could minize the shortest 
+                                distance between the line and the points. When one minimizes the residuals (green), they are preferentially weighing error in a particular dimension.
+                                This is illistrated in the figure below:
+                            </p>
+                        <center><img src="images/straight_line_with_examples.jpg" height="650" /></center>
+                        <p>In general, these lines are different. An advantage of the residual method is if you know the x-values are right, and all the error lies in only one dimension. Another 
+                        advantages is that the generalization of the residual method to any polynomial is simple. For our particular data-set, the lines are: </p>
+                        <center><img src="images/straight_fits.jpg" height="400" /></center>
+                        <header>
+                            <h2>So, what about a harder problem?</h2>
+                        </header>
+                        <p>
+                            We could consider if our data wasn't a straight line. In fact, we might even have a pathological case. Below is perhaps one of the most
+                            pathological cases, but there is a clear fit.
+                        </p>
+                        <img src="images/combined_swiss.jpg" height="425" />
+
+                        <p> The generalization of this concept to higher dimensions is natural. Below is a 3-dimensional swiss role data set. </p>
+                        <div id="myDiv" style="width:100%;height:300"></div>
+                        <script src="sideproject/sketch3.js"></script>
+         
+                        <p> In the case of non-linear dimensionality reduction, the goal is to "unroll" the manifold. This is often viewed as:</p>
+                        <center><img src="images/isomapping_of_swiss.jpg" height="500" /></center>
+
+                        <header>
+                            <h2>Applications</h2>
+                        </header>
+                        <p>It turns out it is practical to think of angle of rotation as a dimension (or parameter) which can characterize image data-sets. To justify this, I will 
+                        use our current MATLAB algorithim on a simple set of images. <br/><br/>
+                        
+                        First, I will create a data set which is simply 300 rotated versions of the same image. This is seen in the GIF below</p>
+
+                        <center><img src="images/rotatingLogo.gif" height="250" /></center>
+
+                        <p>If I simply scatter-plot the first two eigen vectors of the data set against each other, and color the plot by rotation,
+                        it is easy to see that there is no correlation</p>
+
+                        <center><img src="images/svdOrdering.jpg" height="500" /></center>
+
+                        <p>However, it we use diffusion mapping on the data set and scatter plot the first two eigen vectors, the result is absolutely
+                        remarkable!</p>
+
+                        <center><img src="images/rotatedImgPsi.jpg" height="500" /></center>
+
+                        <p>To check the accuracy, we can simply compare the true rotation to the angle found from the arctan of the first two eigen-vectors</p>
+
+                        <center><img src="images/analysisofResult.jpg" height="500" /></center>
+
+                    </article>
+
+
+
+                    <!-- 
+                    <div id="dataanalysis"><p align="left">Here we have a classic non-linear example called a swiss role. This
+                    is a particular favorite.</p></div>
+                    <div id="swiss_role" style="width:60%; height:100%;"><script align="right" src="sideproject/sketch3.js"></script></div>                    
+                    <div id="dataanalysis"><p>There are many examples of non-linear manifolds, to our right is another cool one called ___.
+                    In general, it is safe to say a goal is to both "unwrap" these manifolds and find the functions
+                    which define them.</p></div>
+                    <div id="swiss_role" style="width:60%; height:100%;"><script src="sideproject/sketch3.js"></script></div>
+                    <div id="dataanalysis">
+                        <p>
+                            There are many examples of non-linear manifolds, to our right is another cool one called ___.
+                            In general, it is safe to say a goal is to both "unwrap" these manifolds and find the functions
+                            which define them.
+                        </p>-->
+<!--
+                    </div>
+                    <div id="swiss_role" style="width:60%; height:100%; ali:right">
+                    <script src="sideproject/sketch3.js"></script></div>
+                    -->
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
